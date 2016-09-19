@@ -1,7 +1,7 @@
 # dotfiles
 
 ```
-git cloen git://github.vim:mshr-h/dotfiles.git ~/.dotfiles
-sh ~/.dotfiles/init.sh
+git clone git@github.com:mshr-h/dotfiles.git .dotfiles
+bash ~/.dotfiles/init.sh
 ```
 
