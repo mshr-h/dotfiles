@@ -1,0 +1,17 @@
+colorscheme tender
+set clipboard=unnamed,autoselect
+
+" Window size
+set lines=30
+"set columns=100
+
+if has('multi_byte_ime')
+  highlight Cursor guifg=NONE guibg=Green
+  highlight CursorIM guifg=NONE guibg=Red
+endif
+
+" Read local setting.
+if filereadable(expand('$HOME/.gvimrc_local'))
+  source $HOME/.gvimrc_local
+endif
+

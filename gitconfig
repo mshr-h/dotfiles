@@ -1,0 +1,7 @@
+[user]
+	email = mshr-h@users.noreply.github.com
+	name = mshr-h
+[core]
+	editor = vim
+[push]
+	default = simple
