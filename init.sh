@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ -z $DOTFILES_HOME ]]; then
   export DOTFILES_HOME=~/.dotfiles
 fi
