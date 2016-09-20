@@ -178,8 +178,8 @@ cnoremap <C-k> <C-\>e getcmdpos() == 1 ?
 cnoremap <C-y> <C-r>*
 
 " Easily edit .vimrc and .gvimrc
-nnoremap <silent> <Space>ev  :<C-u>edit $HOME/.vim/vimrc<CR>
-nnoremap <silent> <Space>eg  :<C-u>edit $HOME/.vim/gvimrc<CR>
+nnoremap <silent> <Space>ev  :<C-u>edit $HOME/.dotfiles/vim/vimrc<CR>
+nnoremap <silent> <Space>eg  :<C-u>edit $HOME/.dotfiles/vim/gvimrc<CR>
 
 " Change current directory.
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
