@@ -17,6 +17,11 @@ fi
 zplug load
 
 ##############################################
+# environment
+#
+export EDITOR=vim
+
+##############################################
 # colors
 #
 if [ $TERM = "dumb" ]; then
