@@ -20,6 +20,7 @@ git config --global push.default "simple"
 
 # zsh
 [[ -f ~/.zshrc ]] || ln -s $DOTFILES_HOME/zshrc ~/.zshrc
+[[ -f ~/.zshenv ]] || ln -s $DOTFILES_HOME/zshenv ~/.zshenv
 
 ## install zplug
 curl -sL zplug.sh/installer | zsh
