@@ -66,4 +66,9 @@ HISTFILE=$HOME/.zsh-history
 HISTSIZE=10000
 SAVEHIST=50000
 
+##############################################
+# load local config
+#
+[[ -f ~/.zshrc_local ]] && source ~/.zshrc_local
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
