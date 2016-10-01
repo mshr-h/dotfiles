@@ -41,8 +41,10 @@ silent! if plug#begin('~/.plugged')
   Plug 'Shougo/unite.vim' | Plug 'Shougo/vimfiler.vim'
   Plug 'haya14busa/incsearch.vim'
   Plug 'itchyny/vim-cursorword'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
+  if !s:is_windows
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+  endif
 
   " Git
   Plug 'Shougo/unite.vim' | Plug 'kmnk/vim-unite-giti'
