@@ -61,6 +61,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'osyo-manga/vim-over'
   Plug 'jceb/vim-hier'
   Plug 'KazuakiM/vim-qfstatusline'
+  Plug 'w0rp/ale'
 
   " Lang
   Plug 'fatih/vim-go'
