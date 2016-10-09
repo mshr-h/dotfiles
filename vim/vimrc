@@ -66,6 +66,7 @@ silent! if plug#begin('~/.plugged')
   " Lang
   Plug 'fatih/vim-go'
   Plug 'tpope/vim-markdown'
+  Plug 'rhysd/vim-gfm-syntax'
   Plug 'elzr/vim-json'
   Plug 'tell-k/vim-autopep8'
   Plug 'rhysd/vim-clang-format'
