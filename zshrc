@@ -83,11 +83,6 @@ PROMPT='[%n@%m]%# '
 RPROMPT='[%~]'
 
 ##############################################
-# alias
-#
-alias emacs='vim'
-
-##############################################
 # others
 #
 HISTFILE=$HOME/.zsh-history
