@@ -565,11 +565,6 @@ augroup RainbowParentheses
 augroup END
 
 " ----------------------------------------------------------------------------
-" vim-clang-format
-"
-let g:clang_format#auto_format=1
-
-" ----------------------------------------------------------------------------
 " rust.vim
 "
 let g:rustfmt_autosave = 1
