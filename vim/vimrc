@@ -45,6 +45,7 @@ silent! if plug#begin('~/.plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
   endif
+  Plug 'Shougo/denite.nvim'
 
   " Git
   Plug 'Shougo/unite.vim' | Plug 'kmnk/vim-unite-giti'
@@ -581,6 +582,29 @@ function! s:AutoDisableCompletorForUniteBuffer()
     autocmd InsertLeave <buffer> call completor#enable()
   augroup END
 endfunction
+
+" ----------------------------------------------------------------------------
+" denite.nvim
+"
+" The prefix key.
+nnoremap    [denite]   <Nop>
+xnoremap    [denite]   <Nop>
+nmap    <Space>d [denite]
+xmap    <Space>d [denite]
+nnoremap <silent> [denite]p :<C-u>Denite neoyank<CR>
+nnoremap <silent> [denite]/ :<C-u>Denite line<CR>
+nnoremap <silent> [denite]a :<C-u>Denite file_mru file_rec<CR>
+" keymapping
+call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
+call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
+" use rg for file_rec
+call denite#custom#var('file_rec', 'command', ['rg', '--files'])
+" use rg for grep
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 
 " ----------------------------------------------------------------------------
 " Read local setting.
