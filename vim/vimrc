@@ -408,12 +408,6 @@ nnoremap <silent> [unite]gs :<C-u>Unite giti/status<CR>
 nnoremap <silent> [unite]a :<C-u>Unite buffer file_mru bookmark file<CR>
 
 " ----------------------------------------------------------------------------
-" vimshell
-"
-nmap <Space>s :<C-u>VimShell<CR>
-nnoremap <silent> <Space>; :<C-u>VimShellPop<CR>
-
-" ----------------------------------------------------------------------------
 " vimfiler
 "
 let g:vimfiler_as_default_explorer = 1
