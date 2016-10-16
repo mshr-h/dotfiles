@@ -411,7 +411,6 @@ nnoremap <silent> [unite]a :<C-u>Unite buffer file_mru bookmark file<CR>
 " vimfiler
 "
 let g:vimfiler_as_default_explorer = 1
-nmap <Space>f :<C-u>VimFiler<CR>
 
 " ----------------------------------------------------------------------------
 " incsearch.vim
