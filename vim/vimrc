@@ -631,21 +631,6 @@ let g:rustfmt_autosave = 1
 vmap <Enter> <Plug>(EasyAlign)
 
 " ----------------------------------------------------------------------------
-" completor.vim
-"
-augroup completor_vim
-  autocmd!
-  autocmd FileType unite call s:AutoDisableCompletorForUniteBuffer()
-augroup END
-function! s:AutoDisableCompletorForUniteBuffer()
-  augroup completor_unite
-    autocmd!
-    autocmd InsertEnter <buffer> call completor#disable()
-    autocmd InsertLeave <buffer> call completor#enable()
-  augroup END
-endfunction
-
-" ----------------------------------------------------------------------------
 " denite.nvim
 "
 " The prefix key.
