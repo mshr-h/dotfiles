@@ -350,7 +350,7 @@ augroup MyAutoCmd
   autocmd FileType go setl listchars=tab:\|\ ,trail:-
   autocmd FileType haskell setl nofoldenable
   autocmd FileType python setl cin
-  autocmd FileType python setl noexpandtab
+  autocmd FileType python setl expandtab
   autocmd FileType python setl nofoldenable
   autocmd FileType python setl shiftwidth=4
   autocmd FileType python setl tabstop=4
