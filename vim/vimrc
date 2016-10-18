@@ -63,12 +63,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'jceb/vim-hier'
   Plug 'KazuakiM/vim-qfstatusline'
   Plug 'w0rp/ale'
-  Plug 'maralla/completor.vim'
-  Plug 'garbas/vim-snipmate'
-  Plug 'MarcWeber/vim-addon-mw-utils'
-  Plug 'tomtom/tlib_vim'
-  Plug 'garbas/vim-snipmate'
-  Plug 'honza/vim-snippets'
 
   " Lang
   Plug 'fatih/vim-go'
@@ -79,6 +73,11 @@ silent! if plug#begin('~/.plugged')
   Plug 'rhysd/vim-clang-format'
   Plug 'rust-lang/rust.vim'
   Plug 'rhysd/unite-go-import.vim'
+
+  if(has('lua'))
+    Plug 'Shougo/neocomplete' | Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neocomplete' | Plug 'Shougo/neosnippet-snippets'
+  endif
 
   call plug#end()
 endif
@@ -532,6 +531,69 @@ let g:go_highlight_build_constraints = 1
 let g:gocomplete#system_function = 'system'
 
 " ----------------------------------------------------------------------------
+" neocomplete
+"
+" <TAB>: completion.
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" file name completion
+inoremap <C-x><C-f> <C-x><C-f><C-p>
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_ignore_case=1
+let g:neocomplete#enable_smart_case=1
+let g:neocomplete#enable_fuzzy_completion=1
+let g:neocomplete#sources#syntax#min_keyword_length=4
+let g:neocomplete#auto_completion_start_length=3
+let g:neocomplete#skip_auto_completion_time='0.3'
+let g:neocomplete#enable_auto_select=0
+let g:neocomplete#sources#buffer#disabled_pattern=
+      \ '\.log\|\.log\.\|\.jax\|Log.txt'
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries={
+      \ 'default' : '',
+      \ 'vimshell' : '~/.vimshell/command-history'
+      \ }
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns={}
+endif
+let g:neocomplete#keyword_patterns['default']='\h\w*'
+let g:neocomplete#keyword_patterns['gosh-repl']="[[:alpha:]+*/@$_=.!?-][[:alnum:]+*/@$_:=.!?-]*"
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns={}
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns={}
+endif
+let g:neocomplete#force_omni_input_patterns.c=
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+
+" ----------------------------------------------------------------------------
+" neosnippet
+"
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/snippets/'
+
+" Plugin key-mappings.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>"
+      \ : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)"
+      \ : "\<TAB>"
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+inoremap <silent><C-u> <ESC>:<C-U>Unite neosnippet<CR>
+
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" ----------------------------------------------------------------------------
 " over.vim
 "
 let g:over#command_line#search#enable_incsearch = 1
@@ -567,21 +629,6 @@ let g:rustfmt_autosave = 1
 " vim-easy-align
 "
 vmap <Enter> <Plug>(EasyAlign)
-
-" ----------------------------------------------------------------------------
-" completor.vim
-"
-augroup completor_vim
-  autocmd!
-  autocmd FileType unite call s:AutoDisableCompletorForUniteBuffer()
-augroup END
-function! s:AutoDisableCompletorForUniteBuffer()
-  augroup completor_unite
-    autocmd!
-    autocmd InsertEnter <buffer> call completor#disable()
-    autocmd InsertLeave <buffer> call completor#enable()
-  augroup END
-endfunction
 
 " ----------------------------------------------------------------------------
 " denite.nvim
