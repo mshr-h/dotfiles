@@ -79,6 +79,11 @@ silent! if plug#begin('~/.plugged')
     Plug 'Shougo/neocomplete' | Plug 'Shougo/neosnippet-snippets'
   endif
 
+
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'tacahiroy/ctrlp-funky'
+  Plug 'suy/vim-ctrlp-commandline'
+
   call plug#end()
 endif
 
@@ -654,6 +659,16 @@ if s:is_windows
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 endif
+
+" ----------------------------------------------------------------------------
+" ctrlp.vim
+"
+let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_types = ['buf', 'mru', 'fil']
+let g:ctrlp_extensions = ['funky', 'commandline', 'quickfix', 'mixed']
+
+let g:ctrlp_funky_matchtype = 'path'
 
 " ----------------------------------------------------------------------------
 " Read local setting.
