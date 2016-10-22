@@ -45,6 +45,10 @@ silent! if plug#begin('~/.plugged')
     Plug 'junegunn/fzf.vim'
   endif
   Plug 'Shougo/denite.nvim' | Plug 'Shougo/neoyank.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'tacahiroy/ctrlp-funky'
+  Plug 'suy/vim-ctrlp-commandline'
+
 
   " Git
   Plug 'tpope/vim-fugitive'
@@ -76,11 +80,6 @@ silent! if plug#begin('~/.plugged')
     Plug 'Shougo/neocomplete' | Plug 'Shougo/neosnippet'
     Plug 'Shougo/neocomplete' | Plug 'Shougo/neosnippet-snippets'
   endif
-
-
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'tacahiroy/ctrlp-funky'
-  Plug 'suy/vim-ctrlp-commandline'
 
   call plug#end()
 endif
