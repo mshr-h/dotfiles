@@ -107,7 +107,7 @@ set backspace=indent,eol,start
 set timeoutlen=500
 set whichwrap+=h,l,<,>,[,],b,s,~
 set shortmess=aIT
-set hlsearch " CTRL-L / CTRL-R W
+set hlsearch
 set incsearch
 set hidden
 set ignorecase
@@ -315,25 +315,6 @@ endif
 " Python
 let g:autopep8_disable_show_diff=1
 let g:python_highlight_all = 1
-function! Preserve(command)
-  " Save the last search.
-  let search = @/
-  " Save the current cursor position.
-  let cursor_position = getpos('.')
-  " Save the current window position.
-  normal! H
-  let window_position = getpos('.')
-  call setpos('.', cursor_position)
-  " Execute the command.
-  execute a:command
-  " Restore the last search.
-  let @/ = search
-  " Restore the previous window position.
-  call setpos('.', window_position)
-  normal! zt
-  " Restore the previous cursor position.
-  call setpos('.', cursor_position)
-endfunction
 
 " ----------------------------------------------------------------------------
 " Autocommands
@@ -358,13 +339,9 @@ augroup MyAutoCmd
   autocmd FileType verilog setl suffixesadd=.v
   autocmd FileType vim setl foldmethod=marker
 
-  autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
   autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType python setl omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 augroup END
-
 
 " ----------------------------------------------------------------------------
 " vim-plug
@@ -511,7 +488,6 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:gocomplete#system_function = 'system'
 
 " ----------------------------------------------------------------------------
 " neocomplete
