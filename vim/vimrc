@@ -48,7 +48,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'Shougo/denite.nvim'
 
   " Git
-  Plug 'Shougo/unite.vim' | Plug 'kmnk/vim-unite-giti'
   Plug 'tpope/vim-fugitive'
 
   " Colors
@@ -391,26 +390,8 @@ augroup Unite
   autocmd FileType unite call s:unite_settings()
 augroup END
 
-" The prefix key.
-nnoremap    [unite]   <Nop>
-xnoremap    [unite]   <Nop>
-nmap    <Space>u [unite]
-xmap    <Space>u [unite]
-" Unite-grep
-nnoremap <silent> [unite]s
-      \ :<C-u>Unite grep -buffer-name=search
-      \ -auto-preview -no-quit -resume<CR>
-" yank history.
-nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
-" vim-unite-giti.
-nnoremap <silent> [unite]g  :<C-u>Unite giti<CR>
-nnoremap <silent> [unite]gb :<C-u>Unite giti/branch<CR>
-nnoremap <silent> [unite]gc :<C-u>Unite giti/config<CR>
-nnoremap <silent> [unite]gl :<C-u>Unite giti/log<CR>
-nnoremap <silent> [unite]gr :<C-u>Unite giti/remote<CR>
-nnoremap <silent> [unite]gs :<C-u>Unite giti/status<CR>
 " All.
-nnoremap <silent> [unite]a :<C-u>Unite buffer file_mru bookmark file<CR>
+nnoremap <silent> <Space>u :<C-u>Unite buffer file_mru file<CR>
 
 " ----------------------------------------------------------------------------
 " vimfiler
