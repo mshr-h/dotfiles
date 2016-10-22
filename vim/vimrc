@@ -74,7 +74,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'tell-k/vim-autopep8'
   Plug 'rhysd/vim-clang-format'
   Plug 'rust-lang/rust.vim'
-  Plug 'rhysd/unite-go-import.vim'
 
   if(has('lua'))
     Plug 'Shougo/neocomplete' | Plug 'Shougo/neosnippet'
