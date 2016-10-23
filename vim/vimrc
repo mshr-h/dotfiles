@@ -150,6 +150,7 @@ set grepformat=%f:%l:%c:%m,%f:%l:%m
 if executable('jvgrep')
   set grepprg=jvgrep
 endif
+highlight CursorLine ctermfg=216
 
 " ----------------------------------------------------------------------------
 " Keymappings
