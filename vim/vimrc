@@ -339,8 +339,6 @@ augroup MyAutoCmd
   autocmd FileType verilog setl suffixesadd=.v
   autocmd FileType vim setl foldmethod=marker
 
-  autocmd FileType html,markdown setl omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType python setl omnifunc=pythoncomplete#Complete
 augroup END
 
 " ----------------------------------------------------------------------------
