@@ -56,6 +56,7 @@ silent! if plug#begin('~/.plugged')
   " Colors
   Plug 'kien/rainbow_parentheses.vim'
   Plug 'jacoborus/tender'
+  Plug 'NLKNguyen/papercolor-theme'
 
   " Edit
   Plug 'junegunn/vim-easy-align'
@@ -86,7 +87,8 @@ endif
 " ============================================================================
 " BASIC SETTINGS
 "
-colorscheme tender
+colorscheme PaperColor
+set background=dark
 set autoindent
 set smartindent
 set breakindent
