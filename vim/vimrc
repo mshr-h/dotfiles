@@ -605,6 +605,11 @@ call denite#custom#map('insert', "\<C-k>", 'move_to_prev_line')
 call denite#custom#map('normal', "\<C-j>", 'move_to_next_line')
 call denite#custom#map('normal', "\<C-k>", 'move_to_prev_line')
 
+" custom file_rec command
+if executable('files')
+  call denite#custom#var('file_rec', 'command', ['files', '-a'])
+endif
+
 " ----------------------------------------------------------------------------
 " ctrlp.vim
 "
