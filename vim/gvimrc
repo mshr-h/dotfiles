@@ -1,4 +1,5 @@
 colorscheme PaperColor
+set background=dark
 set clipboard=unnamed,autoselect
 
 " Window size
