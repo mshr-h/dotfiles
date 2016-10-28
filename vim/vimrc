@@ -74,7 +74,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'elzr/vim-json'
   Plug 'tell-k/vim-autopep8'
   Plug 'rhysd/vim-clang-format'
-  Plug 'rust-lang/rust.vim'
   Plug 'NLKNguyen/c-syntax.vim'
 
   if(has('lua'))
@@ -580,11 +579,6 @@ augroup RainbowParentheses
   autocmd!
   autocmd Syntax * RainbowParenthesesToggleAll
 augroup END
-
-" ----------------------------------------------------------------------------
-" rust.vim
-"
-let g:rustfmt_autosave = 1
 
 " ----------------------------------------------------------------------------
 " vim-easy-align
