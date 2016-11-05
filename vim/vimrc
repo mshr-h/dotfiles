@@ -573,7 +573,7 @@ nmap    <Space>d [denite]
 xmap    <Space>d [denite]
 nnoremap <silent> [denite]p :<C-u>Denite neoyank<CR>
 nnoremap <silent> [denite]/ :<C-u>Denite line<CR>
-nnoremap <silent> [denite]a :<C-u>Denite file_mru file_rec<CR>
+nnoremap <silent> [denite]a :<C-u>Denite buffer file_mru file_rec<CR>
 " keymapping
 call denite#custom#map('insert', "<C-j>", 'move_to_next_line')
 call denite#custom#map('insert', "<C-k>", 'move_to_prev_line')
