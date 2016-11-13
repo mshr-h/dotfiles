@@ -451,9 +451,6 @@ let g:go#use_vimproc = 0
 " ----------------------------------------------------------------------------
 " over.vim
 "
-let g:over#command_line#search#enable_incsearch = 1
-let g:over#command_line#search#enable_move_cursor = 0
-
 cnoreabb <silent><expr>s getcmdtype()==':' && getcmdline()=~'^s' ? 'OverCommandLine<CR><C-u>%s/<C-r>=get([], getchar(0), '')<CR>': 's'
 
 " ----------------------------------------------------------------------------
