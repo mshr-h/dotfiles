@@ -50,7 +50,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'tpope/vim-fugitive'
 
   " Colors
-  Plug 'kien/rainbow_parentheses.vim'
+  Plug 'junegunn/rainbow_parentheses.vim'
   Plug 'jacoborus/tender'
   Plug 'NLKNguyen/papercolor-theme'
 
@@ -466,10 +466,9 @@ runtime macros/matchit.vim
 " ----------------------------------------------------------------------------
 " rainbow_parentheses.vim
 "
-let g:rbpt_loadcmd_toggle=1
-augroup RainbowParentheses
+augroup rainbow
   autocmd!
-  autocmd Syntax * RainbowParenthesesToggleAll
+  autocmd Syntax * RainbowParentheses
 augroup END
 
 " ----------------------------------------------------------------------------
