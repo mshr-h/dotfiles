@@ -438,10 +438,7 @@ nnoremap <silent> <Space>re  :<C-u>Restart<CR>
 " ----------------------------------------------------------------------------
 " nerdcommenter
 "
-let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
-nmap <Leader>/ <Plug>NERDCommenterToggle
-vmap <Leader>/ <Plug>NERDCommenterToggle
 
 " ----------------------------------------------------------------------------
 " vim-go
