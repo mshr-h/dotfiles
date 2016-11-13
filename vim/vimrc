@@ -73,7 +73,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'rhysd/vim-clang-format'
   Plug 'NLKNguyen/c-syntax.vim'
 
-
   call plug#end()
 endif
 
