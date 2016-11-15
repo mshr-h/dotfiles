@@ -1,6 +1,7 @@
 colorscheme PaperColor
 set background=dark
 set clipboard=unnamed,autoselect
+set guioptions=eg
 
 " Window size
 set lines=30
