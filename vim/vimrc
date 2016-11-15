@@ -320,6 +320,7 @@ augroup MyAutoCmd
   autocmd FileType c,cpp,objc setl noexpandtab
   autocmd FileType c,cpp,objc setl shiftwidth=4
   autocmd FileType c,cpp,objc setl tabstop=4
+  autocmd FileType c,cpp,objc setl listchars=tab:\|\ ,trail:-
   autocmd FileType go setl noexpandtab
   autocmd FileType go setl shiftwidth=4
   autocmd FileType go setl tabstop=4
