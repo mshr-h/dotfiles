@@ -428,8 +428,7 @@ endfunction
 " ----------------------------------------------------------------------------
 " Restart.vim
 "
-let g:restart_sessionoptions = "winsize,winpos"
-nnoremap <silent> <Space>re  :<C-u>Restart<CR>
+let g:restart_sessionoptions = 'winsize,winpos'
 
 " ----------------------------------------------------------------------------
 " nerdcommenter
