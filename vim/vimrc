@@ -496,6 +496,7 @@ call denite#custom#map('normal', "<C-k>", 'move_to_prev_line')
 " custom file_rec command
 if executable('files')
   call denite#custom#var('file_rec', 'command', ['files', '-a'])
+  call denite#custom#var('directory_rec', 'command', ['files', '-a', '-d'])
 endif
 
 " ----------------------------------------------------------------------------
