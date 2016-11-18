@@ -72,6 +72,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'tell-k/vim-autopep8'
   Plug 'rhysd/vim-clang-format'
   Plug 'NLKNguyen/c-syntax.vim'
+  Plug 'rust-lang/rust.vim'
 
   call plug#end()
 endif
@@ -310,6 +311,9 @@ endif
 " Python
 let g:autopep8_disable_show_diff=1
 let g:python_highlight_all = 1
+
+" Rust
+let g:rustfmt_autosave = 1
 
 " ----------------------------------------------------------------------------
 " Autocommands
