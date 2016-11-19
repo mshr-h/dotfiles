@@ -465,7 +465,7 @@ let g:Qfstatusline#UpdateCmd = function('lightline#update')
 " ----------------------------------------------------------------------------
 " matchit.vim
 "
-runtime macros/matchit.vim
+packadd matchit
 
 " ----------------------------------------------------------------------------
 " rainbow_parentheses.vim
