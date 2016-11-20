@@ -51,7 +51,6 @@ silent! if plug#begin('~/.plugged')
 
   " Colors
   Plug 'junegunn/rainbow_parentheses.vim'
-  Plug 'jacoborus/tender'
   Plug 'NLKNguyen/papercolor-theme'
 
   " Edit
@@ -354,9 +353,8 @@ map / <Plug>(incsearch-forward)
 " ----------------------------------------------------------------------------
 " lightline.vim
 "
-let g:tender_lightline = 1
 let g:lightline = {
-      \ 'colorscheme': 'tender',
+      \ 'colorscheme': 'PaperColor',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
