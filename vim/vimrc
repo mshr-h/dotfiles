@@ -35,7 +35,7 @@ silent! if plug#begin('~/.plugged')
   Plug  'tyru/restart.vim'
 
   " Browsing
-  Plug 'Shougo/unite.vim' | Plug 'Shougo/vimfiler.vim'
+  Plug 'justinmk/vim-dirvish'
   Plug 'haya14busa/incsearch.vim'
   Plug 'itchyny/vim-cursorword'
   if !s:is_windows
@@ -342,11 +342,6 @@ augroup MyAutoCmd
 augroup END
 
 " ----------------------------------------------------------------------------
-" vimfiler
-"
-let g:vimfiler_as_default_explorer = 1
-
-" ----------------------------------------------------------------------------
 " incsearch.vim
 "
 map / <Plug>(incsearch-forward)
@@ -389,22 +384,21 @@ let g:lightline = {
       \ }
 
 function! LightLineModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  return &ft =~ 'help\|dirvish\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! LightLineReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+  return &ft !~? 'help\|dirvish\|gundo' && &readonly ? '⭤' : ''
 endfunction
 
 function! LightLineFilename()
   return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
         \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
 function! LightLineFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+  if &ft !~? 'dirvish\|gundo' && exists("*fugitive#head")
     let _ = fugitive#head()
     return strlen(_) ? '<= '._ : ''
   endif
@@ -517,4 +511,3 @@ endif
 if filereadable(expand('$HOME/.vimrc_local'))
   source $HOME/.vimrc_local
 endif
-
