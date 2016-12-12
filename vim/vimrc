@@ -35,7 +35,6 @@ silent! if plug#begin('~/.plugged')
   Plug  'tyru/restart.vim'
 
   " Browsing
-  Plug 'justinmk/vim-dirvish'
   Plug 'haya14busa/incsearch.vim'
   Plug 'itchyny/vim-cursorword'
   if !s:is_windows
