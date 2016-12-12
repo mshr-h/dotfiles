@@ -474,6 +474,13 @@ augroup END
 vmap <Enter> <Plug>(EasyAlign)
 
 " ----------------------------------------------------------------------------
+" netrw.vim
+"
+let g:netrw_liststyle = 3
+let g:netrw_alto = 1 " horizontally split window and open the file in the lower window
+let g:netrw_altv = 1 " vertically split window and open the file in the right window
+
+" ----------------------------------------------------------------------------
 " denite.nvim
 "
 " The prefix key.
