@@ -59,9 +59,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'jceb/vim-hier'
   Plug 'KazuakiM/vim-qfstatusline'
   Plug 'w0rp/ale'
-  if !has('nvim')
-    Plug 'maralla/completor.vim'
-  endif
 
   " Lang
   Plug 'fatih/vim-go'
