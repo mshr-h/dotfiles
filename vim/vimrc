@@ -59,6 +59,10 @@ silent! if plug#begin('~/.plugged')
   Plug 'jceb/vim-hier'
   Plug 'KazuakiM/vim-qfstatusline'
   Plug 'w0rp/ale'
+  Plug 'Shougo/neocomplcache'
+  Plug 'Shougo/neocomplete'
+  Plug 'Shougo/neosnippet'
+  Plug 'Shougo/neosnippet-snippets'
 
   " Lang
   Plug 'fatih/vim-go'
@@ -476,6 +480,31 @@ vmap <Enter> <Plug>(EasyAlign)
 let g:netrw_liststyle = 3
 let g:netrw_alto = 1 " horizontally split window and open the file in the lower window
 let g:netrw_altv = 1 " vertically split window and open the file in the right window
+
+
+" ----------------------------------------------------------------------------
+" neosnippet
+"
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 " ----------------------------------------------------------------------------
 " denite.nvim
