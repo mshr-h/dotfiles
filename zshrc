@@ -5,7 +5,7 @@
 
 source ~/.zplug/init.zsh
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:3
+zplug "zsh-users/zsh-syntax-highlighting"
 zplug "mollifier/cd-gitroot"
 zplug "plugins/git",   from:oh-my-zsh
 
