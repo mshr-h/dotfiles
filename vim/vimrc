@@ -75,6 +75,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'rhysd/vim-clang-format'
   Plug 'NLKNguyen/c-syntax.vim'
   Plug 'rust-lang/rust.vim'
+  Plug 'octol/vim-cpp-enhanced-highlight'
 
   call plug#end()
 endif
