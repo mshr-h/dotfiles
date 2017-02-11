@@ -20,6 +20,7 @@ zplug load
 # environment
 #
 export EDITOR=vim
+source ~/.zshenv
 
 ##############################################
 # completions
