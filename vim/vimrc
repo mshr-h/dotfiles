@@ -68,6 +68,7 @@ silent! if plug#begin('~/.plugged')
 
   " Lang
   Plug 'fatih/vim-go'
+  Plug 'godoctor/godoctor.vim'
   Plug 'tpope/vim-markdown'
   Plug 'rhysd/vim-gfm-syntax'
   Plug 'elzr/vim-json'
