@@ -9,4 +9,5 @@ go get github.com/Code-Hex/pget
 go get github.com/anacrolix/torrent/cmd/torrent
 go get github.com/jackpal/Taipei-Torrent
 go get github.com/mshr-h/gomirror
+go get github.com/shurcooL/markdownfmt
 
