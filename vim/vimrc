@@ -65,6 +65,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'Shougo/neocomplete'
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
+  Plug 'glidenote/memolist.vim'
 
   " Lang
   Plug 'fatih/vim-go'
