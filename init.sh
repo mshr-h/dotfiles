@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## install zplug
-curl -sL zplug.sh/installer | zsh
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 
 go get -u github.com/mattn/files
 go get -u github.com/mattn/jvgrep
