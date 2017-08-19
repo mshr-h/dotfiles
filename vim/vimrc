@@ -78,6 +78,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'NLKNguyen/c-syntax.vim'
   Plug 'rust-lang/rust.vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
+  Plug 'udalov/kotlin-vim'
 
   call plug#end()
 endif
