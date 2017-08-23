@@ -79,6 +79,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'rust-lang/rust.vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'udalov/kotlin-vim'
+  Plug 'ARM9/arm-syntax-vim'
 
   call plug#end()
 endif
@@ -327,6 +328,12 @@ let g:rustfmt_autosave = 1
 augroup MyAutoCmd
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.s,*.S set filetype=arm
+  autocmd FileType arm setl cin
+  autocmd FileType arm setl noexpandtab
+  autocmd FileType arm setl shiftwidth=4
+  autocmd FileType arm setl tabstop=4
+  autocmd FileType arm setl listchars=tab:\|\ ,trail:-
   autocmd FileType c,cpp,objc setl noexpandtab
   autocmd FileType c,cpp,objc setl shiftwidth=4
   autocmd FileType c,cpp,objc setl tabstop=4
