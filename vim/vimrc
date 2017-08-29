@@ -180,6 +180,8 @@ cnoremap <C-k> <C-\>e getcmdpos() == 1 ?
       \ '' : getcmdline()[:getcmdpos()-2]<CR>
 " <C-y>: paste.
 cnoremap <C-y> <C-r>*
+" show the jump list if more then one candidate
+nnoremap <C-]> g<C-]>
 
 " Easily edit .vimrc and .gvimrc
 nnoremap <silent> <Space>ev  :<C-u>edit $HOME/.dotfiles/vim/vimrc<CR>
