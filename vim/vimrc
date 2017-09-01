@@ -184,6 +184,13 @@ cnoremap <C-y> <C-r>*
 " show the jump list if more then one candidate
 nnoremap <C-]> g<C-]>
 
+" gtags
+map <C-g> :Gtags 
+map <C-h> :Gtags -f %<CR>
+map <C-j> :GtagsCursor<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+
 " Easily edit .vimrc and .gvimrc
 nnoremap <silent> <Space>ev  :<C-u>edit $HOME/.dotfiles/vim/vimrc<CR>
 nnoremap <silent> <Space>eg  :<C-u>edit $HOME/.dotfiles/vim/gvimrc<CR>
