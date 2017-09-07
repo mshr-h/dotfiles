@@ -81,6 +81,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'udalov/kotlin-vim'
   Plug 'ARM9/arm-syntax-vim'
+  Plug 'chiphogg/vim-prototxt'
 
   call plug#end()
 endif
