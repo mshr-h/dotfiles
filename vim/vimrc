@@ -35,7 +35,7 @@ silent! if plug#begin('~/.plugged')
   Plug  'tyru/restart.vim'
 
   " Browsing
-  Plug 'haya14busa/incsearch.vim'
+  Plug 'haya14busa/is.vim'
   Plug 'itchyny/vim-cursorword'
   if !s:is_windows
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
