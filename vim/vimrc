@@ -49,6 +49,7 @@ silent! if plug#begin('~/.plugged')
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'mhinz/vim-signify'
+  Plug 'lambdalisue/gina.vim'
 
   " Colors
   Plug 'junegunn/rainbow_parentheses.vim'
