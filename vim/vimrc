@@ -367,11 +367,6 @@ augroup MyAutoCmd
 augroup END
 
 " ----------------------------------------------------------------------------
-" incsearch.vim
-"
-map / <Plug>(incsearch-forward)
-
-" ----------------------------------------------------------------------------
 " lightline.vim
 "
 let g:lightline = {
