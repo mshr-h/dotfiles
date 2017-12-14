@@ -83,7 +83,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'udalov/kotlin-vim'
   Plug 'ARM9/arm-syntax-vim'
   Plug 'chiphogg/vim-prototxt'
-  Plug 'taketwo/vim-ros'
+  Plug 'ompugao/ros.vim'
 
   call plug#end()
 endif
