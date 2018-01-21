@@ -17,8 +17,3 @@ git config --global push.default "simple"
 
 # tmux
 [[ -f ~/.tmux.conf ]] || ln -sfnv $DOTFILES_HOME/tmux.conf ~/.tmux.conf
-
-# zsh
-[[ -f ~/.zshrc ]] || ln -sfnv $DOTFILES_HOME/zshrc ~/.zshrc
-[[ -f ~/.zshenv ]] || ln -sfnv $DOTFILES_HOME/zshenv ~/.zshenv
-

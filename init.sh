@@ -1,8 +1,5 @@
 #!/bin/bash
 
-## install zplug
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
-
 go get -u github.com/mattn/files
 go get -u github.com/mattn/jvgrep
 go get -u github.com/Code-Hex/pget
