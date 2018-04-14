@@ -37,10 +37,8 @@ silent! if plug#begin('~/.plugged')
   " Browsing
   Plug 'haya14busa/is.vim'
   Plug 'itchyny/vim-cursorword'
-  if !s:is_windows
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-  endif
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
   Plug 'Shougo/denite.nvim' | Plug 'Shougo/neoyank.vim'
   Plug 'Shougo/denite.nvim' | Plug 'Shougo/neomru.vim'
   Plug 'cocopon/vaffle.vim'
