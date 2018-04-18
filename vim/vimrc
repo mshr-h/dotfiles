@@ -89,7 +89,7 @@ endif
 " ============================================================================
 " BASIC SETTINGS
 "
-colorscheme PaperColor
+silent! colorscheme PaperColor
 set background=dark
 set autoindent
 set smartindent
@@ -530,13 +530,13 @@ nnoremap <silent> [denite]p :<C-u>Denite neoyank<CR>
 nnoremap <silent> [denite]/ :<C-u>Denite line<CR>
 nnoremap <silent> [denite]a :<C-u>Denite buffer file_mru file_rec<CR>
 " keymapping
-call denite#custom#map(
+silent! call denite#custom#map(
       \ 'insert',
       \ '<C-j>',
       \ '<denite:move_to_next_line>',
       \ 'noremap'
       \)
-call denite#custom#map(
+silent! call denite#custom#map(
       \ 'insert',
       \ '<C-k>',
       \ '<denite:move_to_previous_line>',
