@@ -69,7 +69,7 @@ silent! if plug#begin('~/.plugged')
 
   " Lang
   Plug 'fatih/vim-go'
-  Plug 'plasticboy/vim-markdown'
+  Plug 'tpope/vim-markdown'
   Plug 'moorereason/vim-markdownfmt'
   Plug 'rhysd/vim-gfm-syntax'
   Plug 'elzr/vim-json'
@@ -548,6 +548,11 @@ if executable('files')
   call denite#custom#var('file_rec', 'command', ['files', '-a'])
   call denite#custom#var('directory_rec', 'command', ['files', '-a', '-d'])
 endif
+
+" ----------------------------------------------------------------------------
+" vim-markdown
+"
+let g:markdown_fenced_languages = ['c', 'cpp', 'html', 'python', 'bash=sh']
 
 " ----------------------------------------------------------------------------
 " Read local setting.
