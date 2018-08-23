@@ -72,7 +72,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'tpope/vim-markdown'
   Plug 'moorereason/vim-markdownfmt'
   Plug 'rhysd/vim-gfm-syntax'
-  Plug 'elzr/vim-json'
   Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
   Plug 'fisadev/vim-isort'
   Plug 'rhysd/vim-clang-format'
