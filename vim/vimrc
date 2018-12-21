@@ -42,6 +42,7 @@ silent! if plug#begin('~/.plugged')
   Plug 'Shougo/denite.nvim' | Plug 'Shougo/neoyank.vim'
   Plug 'Shougo/denite.nvim' | Plug 'Shougo/neomru.vim'
   Plug 'cocopon/vaffle.vim'
+  Plug 'lambdalisue/fila.vim'
   Plug 'vim-scripts/gtags.vim'
 
   " Git
