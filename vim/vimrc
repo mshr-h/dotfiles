@@ -531,7 +531,7 @@ nmap    <Space>d [denite]
 xmap    <Space>d [denite]
 nnoremap <silent> [denite]p :<C-u>Denite neoyank<CR>
 nnoremap <silent> [denite]/ :<C-u>Denite line<CR>
-nnoremap <silent> [denite]a :<C-u>Denite buffer file/mru file_rec<CR>
+nnoremap <silent> [denite]a :<C-u>Denite buffer file_mru file/rec<CR>
 " keymapping
 silent! call denite#custom#map(
       \ 'insert',
