@@ -44,6 +44,8 @@ silent! if plug#begin('~/.plugged')
   Plug 'cocopon/vaffle.vim'
   Plug 'lambdalisue/fila.vim'
   Plug 'vim-scripts/gtags.vim'
+  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'roxma/nvim-yarp'
 
   " Git
   Plug 'tpope/vim-fugitive'
