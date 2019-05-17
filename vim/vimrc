@@ -531,7 +531,7 @@ nmap    <Space>d [denite]
 xmap    <Space>d [denite]
 nnoremap <silent> [denite]p :<C-u>Denite neoyank<CR>
 nnoremap <silent> [denite]/ :<C-u>Denite line<CR>
-nnoremap <silent> [denite]a :<C-u>Denite buffer file_mru file_rec<CR>
+nnoremap <silent> [denite]a :<C-u>Denite buffer file/mru file_rec<CR>
 " keymapping
 silent! call denite#custom#map(
       \ 'insert',
@@ -546,9 +546,9 @@ silent! call denite#custom#map(
       \ 'noremap'
       \)
 
-" custom file_rec command
+" custom file/rec command
 if executable('files')
-  call denite#custom#var('file_rec', 'command', ['files', '-a'])
+  call denite#custom#var('file/rec', 'command', ['files', '-a'])
   call denite#custom#var('directory_rec', 'command', ['files', '-a', '-d'])
 endif
 
