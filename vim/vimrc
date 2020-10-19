@@ -4,8 +4,7 @@ scriptencoding utf-8
 let g:vimproc#download_windows_dll = 1
 
 let s:is_windows = has('win16') || has('win32') || has('win64')
-let s:is_cygwin = has('win32unix')
-let s:is_mac = !s:is_windows && !s:is_cygwin
+let s:is_mac = !s:is_windows
       \ && (has('mac') || has('macunix') || has('gui_macvim') ||
       \   (!executable('xdg-open') &&
       \     system('uname') =~? '^darwin'))
@@ -37,12 +36,9 @@ silent! if plug#begin('~/.plugged')
   " Browsing
   Plug 'haya14busa/is.vim'
   Plug 'itchyny/vim-cursorword'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'Shougo/denite.nvim' | Plug 'Shougo/neoyank.vim'
-  Plug 'Shougo/denite.nvim' | Plug 'Shougo/neomru.vim'
-  Plug 'cocopon/vaffle.vim'
-  Plug 'lambdalisue/fila.vim'
+  Plug 'lambdalisue/fern.vim'
   Plug 'vim-scripts/gtags.vim'
   Plug 'roxma/vim-hug-neovim-rpc'
   Plug 'roxma/nvim-yarp'
@@ -68,7 +64,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'Shougo/neocomplete'
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
-  Plug 'glidenote/memolist.vim'
 
   " Lang
   Plug 'fatih/vim-go'
@@ -79,12 +74,8 @@ silent! if plug#begin('~/.plugged')
   Plug 'fisadev/vim-isort'
   Plug 'rhysd/vim-clang-format'
   Plug 'NLKNguyen/c-syntax.vim'
-  Plug 'rust-lang/rust.vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
-  Plug 'udalov/kotlin-vim'
-  Plug 'ARM9/arm-syntax-vim'
   Plug 'chiphogg/vim-prototxt'
-  Plug 'ompugao/ros.vim'
 
   call plug#end()
 endif
@@ -333,9 +324,6 @@ endif
 let g:autopep8_disable_show_diff=1
 let g:python_highlight_all = 1
 
-" Rust
-let g:rustfmt_autosave = 1
-
 " ----------------------------------------------------------------------------
 " Autocommands
 "
@@ -343,11 +331,6 @@ augroup MyAutoCmd
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile *.s,*.S set filetype=arm
-  autocmd FileType arm setl cin
-  autocmd FileType arm setl noexpandtab
-  autocmd FileType arm setl shiftwidth=4
-  autocmd FileType arm setl tabstop=4
-  autocmd FileType arm setl listchars=tab:\ \ ,trail:-
   autocmd FileType c,cpp,objc setl noexpandtab
   autocmd FileType c,cpp,objc setl shiftwidth=4
   autocmd FileType c,cpp,objc setl tabstop=4
@@ -356,7 +339,6 @@ augroup MyAutoCmd
   autocmd FileType go setl shiftwidth=4
   autocmd FileType go setl tabstop=4
   autocmd FileType go setl listchars=tab:\|\ ,trail:-
-  autocmd FileType haskell setl nofoldenable
   autocmd FileType python setl cin
   autocmd FileType python setl expandtab
   autocmd FileType python setl nofoldenable
@@ -377,7 +359,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [
       \     ['mode', 'paste'],
-      \     ['fugitive', 'readonly', 'filename']
+      \     ['gitbranch', 'readonly', 'filename']
       \   ],
       \   'right': [
       \     ['lineinfo'],
@@ -387,15 +369,8 @@ let g:lightline = {
       \   ]
       \ },
       \ 'component_function': {
-      \   'fileencoding' : 'LightLineFileencoding',
-      \   'fileformat'   : 'LightLineFileformat',
-      \   'filename'     : 'LightLineFilename',
-      \   'filetype'     : 'LightLineFiletype',
-      \   'mode'         : 'LightLineMode',
-      \   'modified'     : 'LightLineModified',
-      \   'readonly'     : 'LightLineReadonly',
       \   'syntastic'    : 'SyntasticStatuslineFlag',
-      \   'fugitive'     : 'LightLineFugitive'
+      \   'gitbranch'    : 'FugitiveHead'
       \ },
       \ 'component_expand': {
       \   'syntaxcheck': 'qfstatusline#Update',
@@ -404,44 +379,6 @@ let g:lightline = {
       \   'syntaxcheck': 'error',
       \ },
       \ }
-
-function! LightLineModified()
-  return &ft =~ 'help\|dirvish\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help\|dirvish\|gundo' && &readonly ? '⭤' : ''
-endfunction
-
-function! LightLineFilename()
-  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  if &ft !~? 'dirvish\|gundo' && exists("*fugitive#head")
-    let _ = fugitive#head()
-    return strlen(_) ? '<= '._ : ''
-  endif
-  return ''
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
 
 " ----------------------------------------------------------------------------
 " Restart.vim
@@ -452,20 +389,6 @@ let g:restart_sessionoptions = 'winsize,winpos'
 " nerdcommenter
 "
 let g:NERDSpaceDelims = 1
-
-" ----------------------------------------------------------------------------
-" vim-go
-"
-let g:go_auto_type_info = 1
-let g:go_fmt_command='goimports'
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_build_constraints = 1
-let g:go#use_vimproc = 0
-let g:go_gocode_unimported_packages = 1
 
 " ----------------------------------------------------------------------------
 " over.vim
@@ -480,9 +403,7 @@ let g:Qfstatusline#UpdateCmd = function('lightline#update')
 " ----------------------------------------------------------------------------
 " matchit.vim
 "
-if !has('nvim')
-  packadd matchit
-endif
+packadd matchit
 
 " ----------------------------------------------------------------------------
 " rainbow_parentheses.vim
@@ -522,72 +443,27 @@ if has('conceal')
 endif
 
 " ----------------------------------------------------------------------------
-" denite.nvim
-"
-" The prefix key.
-nnoremap    [denite]   <Nop>
-xnoremap    [denite]   <Nop>
-nmap    <Space>d [denite]
-xmap    <Space>d [denite]
-nnoremap <silent> [denite]p :<C-u>Denite neoyank<CR>
-nnoremap <silent> [denite]/ :<C-u>Denite line<CR>
-nnoremap <silent> [denite]a :<C-u>Denite buffer file_mru file/rec<CR>
-" keymapping
-silent! call denite#custom#map(
-      \ 'insert',
-      \ '<C-j>',
-      \ '<denite:move_to_next_line>',
-      \ 'noremap'
-      \)
-silent! call denite#custom#map(
-      \ 'insert',
-      \ '<C-k>',
-      \ '<denite:move_to_previous_line>',
-      \ 'noremap'
-      \)
-
-" custom file/rec command
-if executable('files')
-  call denite#custom#var('file/rec', 'command', ['files', '-a'])
-  call denite#custom#var('directory_rec', 'command', ['files', '-a', '-d'])
-endif
-
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  let b:dwm_disabled = 1 
-  let b:auto_cursorline_disabled = 1 
-  nnoremap <silent><buffer> <C-j> j 
-  nnoremap <silent><buffer> <C-k> k 
-  nnoremap <silent><buffer><expr> <BS>    denite#do_map('move_up_path')
-  nnoremap <silent><buffer><expr> <C-a>   denite#do_map('do_action', 'my_file_rec')
-  nnoremap <silent><buffer><expr> <C-c>   denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <C-g>   denite#do_map('do_action', 'grep')
-  nnoremap <silent><buffer><expr> <C-n>   denite#do_map('do_action', 'dwm_new')
-  nnoremap <silent><buffer><expr> <C-x>   denite#do_map('do_action', 'quick_move')
-  nnoremap <silent><buffer><expr> <CR>    denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select).'j'
-  nnoremap <silent><buffer><expr> <Tab>   denite#do_map('choose_action')
-  nnoremap <silent><buffer><expr> a       denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> i       denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> p       denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> q       denite#do_map('quit')
-endfunction
-autocmd FileType denite-filter call s:denite_filter_my_setting()
-function! s:denite_filter_my_setting() abort
-  let b:dwm_disabled = 1 
-  let b:auto_cursorline_disabled = 1 
-  inoremap <silent><buffer><expr> <BS>    denite#do_map('move_up_path')
-  inoremap <silent><buffer><expr> <C-c>   denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <C-c>   denite#do_map('quit')
-  " These mappings are not recommended in doc.
-  inoremap <silent><buffer> <C-j>   <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
-  inoremap <silent><buffer> <C-k>   <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
-endfunction
-
-" ----------------------------------------------------------------------------
 " vim-markdown
 "
 let g:markdown_fenced_languages = ['c', 'cpp', 'html', 'python', 'bash=sh']
+
+" ----------------------------------------------------------------------------
+" fzf
+"
+nnoremap <silent> ,a :<C-u>Ag<CR>
+nnoremap <silent> ,f :<C-u>ProjectFiles<CR>
+nnoremap <silent> ,b :<C-u>Buffers<CR>
+nnoremap <silent> ,m :<C-u>History<CR>
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! ProjectFiles execute 'Files' s:find_git_root()
+command! -bang -nargs=? -complete=dir Files
+      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=? -complete=dir Files
+      \call fzf#vim#files(<q-args>, {'options': ['--layout=reverse',
+      \ --info=inline', '--preview', 'head -20 {}']}, <bang>0)
 
 " ----------------------------------------------------------------------------
 " Read local setting.
