@@ -50,7 +50,7 @@ silent! if plug#begin('~/.plugged')
 
   " Colors
   Plug 'junegunn/rainbow_parentheses.vim'
-  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'ghifarit53/tokyonight-vim'
 
   " Edit
   Plug 'junegunn/vim-easy-align'
@@ -83,7 +83,7 @@ endif
 " ============================================================================
 " BASIC SETTINGS
 "
-silent! colorscheme PaperColor
+silent! colorscheme tokyonight
 set background=dark
 set autoindent
 set smartindent
@@ -354,7 +354,7 @@ augroup END
 " lightline.vim
 "
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'tokyonight',
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [
