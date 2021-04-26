@@ -30,7 +30,8 @@ silent! if plug#begin('~/.plugged')
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
   endif
 
-  Plug 'itchyny/lightline.vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'jmcantrell/vim-virtualenv'
   Plug  'tyru/restart.vim'
 
   " Browsing
@@ -350,34 +351,9 @@ augroup MyAutoCmd
 augroup END
 
 " ----------------------------------------------------------------------------
-" lightline.vim
+" vim-airline
 "
-let g:lightline = {
-      \ 'colorscheme': 'tokyonight',
-      \ 'mode_map': {'c': 'NORMAL'},
-      \ 'active': {
-      \   'left': [
-      \     ['mode', 'paste'],
-      \     ['gitbranch', 'readonly', 'filename']
-      \   ],
-      \   'right': [
-      \     ['lineinfo'],
-      \     ['percent'],
-      \     [ 'syntaxcheck' ],
-      \     ['charcode', 'fileformat', 'fileencoding', 'filetype']
-      \   ]
-      \ },
-      \ 'component_function': {
-      \   'syntastic'    : 'SyntasticStatuslineFlag',
-      \   'gitbranch'    : 'FugitiveHead'
-      \ },
-      \ 'component_expand': {
-      \   'syntaxcheck': 'qfstatusline#Update',
-      \ },
-      \ 'component_type': {
-      \   'syntaxcheck': 'error',
-      \ },
-      \ }
+let g:airline#extensions#tabline#enabled = 1
 
 " ----------------------------------------------------------------------------
 " Restart.vim
