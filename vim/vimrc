@@ -68,7 +68,6 @@ silent! if plug#begin('~/.plugged')
 
   " Lang
   Plug 'fatih/vim-go'
-  Plug 'tpope/vim-markdown'
   Plug 'moorereason/vim-markdownfmt'
   Plug 'rhysd/vim-gfm-syntax'
   Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
