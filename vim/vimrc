@@ -339,6 +339,7 @@ augroup MyAutoCmd
   autocmd FileType go setl shiftwidth=4
   autocmd FileType go setl tabstop=4
   autocmd FileType go setl listchars=tab:\|\ ,trail:-
+  autocmd FileType json setl conceallevel=0
   autocmd FileType python setl cin
   autocmd FileType python setl expandtab
   autocmd FileType python setl nofoldenable
