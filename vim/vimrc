@@ -9,18 +9,6 @@ let s:is_mac = !s:is_windows
       \   (!executable('xdg-open') &&
       \     system('uname') =~? '^darwin'))
 
-" Use English interface.
-if s:is_windows
-  language message en
-else
-  language message C
-endif
-
-" Exchange path separator.
-if s:is_windows
-  set shellslash
-endif
-
 " In Windows/Linux, take in a difference of '.vim' and '$VIM/vimfiles'.
 let $DOTVIM = expand('$HOME/.vim')
 set runtimepath+=$HOME/.vim,$HOME/.vim/after
@@ -32,7 +20,6 @@ silent! if plug#begin('~/.plugged')
 
   Plug 'vim-airline/vim-airline'
   Plug 'jmcantrell/vim-virtualenv'
-  Plug  'tyru/restart.vim'
 
   " Browsing
   Plug 'haya14busa/is.vim'
@@ -61,10 +48,6 @@ silent! if plug#begin('~/.plugged')
   Plug 'jceb/vim-hier'
   Plug 'KazuakiM/vim-qfstatusline'
   Plug 'w0rp/ale'
-  Plug 'Shougo/neocomplcache'
-  Plug 'Shougo/neocomplete'
-  Plug 'Shougo/neosnippet'
-  Plug 'Shougo/neosnippet-snippets'
 
   " Lang
   Plug 'fatih/vim-go'
@@ -208,114 +191,10 @@ endfunction
 " ----------------------------------------------------------------------------
 " Encoding
 "
+set fenc=utf-8
 set encoding=utf-8
-" Setting of terminal encoding.
-if !has('gui_running')
-  if &term ==# 'win32' &&
-        \ (v:version < 703 || (v:version == 703 && has('patch814')))
-    " Setting when use the non-GUI Japanese console.
-
-    " Garbled unless set this.
-    set termencoding=cp932
-    " Japanese input changes itself unless set this. Be careful because the
-    " automatic recognition of the character code is not possible!
-    set encoding=japan
-  else
-    if $ENV_ACCESS ==# 'linux'
-      set termencoding=euc-jp
-    elseif $ENV_ACCESS ==# 'colinux'
-      set termencoding=utf-8
-    else  " fallback
-      set termencoding= " same as 'encoding'
-    endif
-  endif
-elseif s:is_windows
-  " For system.
-  set termencoding=cp932
-endif
-
-if !exists('did_encoding_settings') && has('iconv')
-  let s:enc_euc = 'euc-jp'
-  let s:enc_jis = 'iso-2022-jp'
-
-  " Does iconv support JIS X 0213?
-  if iconv('\x87\x64\x87\x6a', 'cp932', 'euc-jisx0213') ==# '\xad\xc5\xad\xcb'
-    let s:enc_euc = 'euc-jisx0213,euc-jp'
-    let s:enc_jis = 'iso-2022-jp-3'
-  endif
-
-  " Build encodings.
-  let &fileencodings = 'ucs-bom'
-  if &encoding !=# 'utf-8'
-    let &fileencodings = &fileencodings . ',' . 'ucs-2le'
-    let &fileencodings = &fileencodings . ',' . 'ucs-2'
-  endif
-  let &fileencodings = &fileencodings . ',' . s:enc_jis
-
-  if &encoding ==# 'utf-8'
-    let &fileencodings = &fileencodings . ',' . s:enc_euc
-    let &fileencodings = &fileencodings . ',' . 'cp932'
-  elseif &encoding =~# '^euc-\%(jp\|jisx0213\)$'
-    let &encoding = s:enc_euc
-    let &fileencodings = &fileencodings . ',' . 'utf-8'
-    let &fileencodings = &fileencodings . ',' . 'cp932'
-  else " cp932
-    let &fileencodings = &fileencodings . ',' . 'utf-8'
-    let &fileencodings = &fileencodings . ',' . s:enc_euc
-  endif
-  let &fileencodings = &fileencodings . ',' . &encoding
-
-  unlet s:enc_euc
-  unlet s:enc_jis
-
-  let did_encoding_settings = 1
- endif
-
-if has('kaoriya')
-  " For Kaoriya only.
-  set fileencodings=guess
-endif
-
-" Default fileformat.
-set fileformat=unix
-" Automatic recognition of a new line cord.
+set fileencodings=iso-2022-jp,ucs-bom,sjis,utf-8,euc-jp,cp932,default,latin1
 set fileformats=unix,dos,mac
-" A fullwidth character is displayed in vim properly.
-set ambiwidth=double
-
-" Open in UTF-8 again.
-command! -bang -bar -complete=file -nargs=? Utf8 edit<bang> ++enc=utf-8 <args>
-" Open in iso-2022-jp again.
-command! -bang -bar -complete=file -nargs=? Iso2022jp edit<bang> ++enc=iso-2022-jp <args>
-" Open in Shift_JIS again.
-command! -bang -bar -complete=file -nargs=? Cp932 edit<bang> ++enc=cp932 <args>
-" Open in EUC-jp again.
-command! -bang -bar -complete=file -nargs=? Euc edit<bang> ++enc=euc-jp <args>
-" Open in UTF-16 again.
-command! -bang -bar -complete=file -nargs=? Utf16 edit<bang> ++enc=ucs-2le <args>
-" Open in UTF-16BE again.
-command! -bang -bar -complete=file -nargs=? Utf16be edit<bang> ++enc=ucs-2 <args>
-
-" Aliases.
-command! -bang -bar -complete=file -nargs=? Jis Iso2022jp<bang> <args>
-command! -bang -bar -complete=file -nargs=? Sjis Cp932<bang> <args>
-command! -bang -bar -complete=file -nargs=? Unicode Utf16<bang> <args>
-
-" Tried to make a file note version.
-" Don't save it because dangerous.
-command! WUtf8 setl fenc=utf-8 command! WIso2022jp setl fenc=iso-2022-jp
-command! WCp932 setl fenc=cp932
-command! WEuc setl fenc=euc-jp
-command! WUtf16 setl fenc=ucs-2le
-command! WUtf16be setl fenc=ucs-2
-" Aliases.
-command! WJis WIso2022jp
-command! WSjis WCp932
-command! WUnicode WUtf16
-
-if has('multi_byte_ime')
-  set iminsert=0 imsearch=0
-endif
 
 " ----------------------------------------------------------------------------
 " Language
@@ -356,11 +235,6 @@ augroup END
 let g:airline#extensions#tabline#enabled = 1
 
 " ----------------------------------------------------------------------------
-" Restart.vim
-"
-let g:restart_sessionoptions = 'winsize,winpos'
-
-" ----------------------------------------------------------------------------
 " nerdcommenter
 "
 let g:NERDSpaceDelims = 1
@@ -392,30 +266,6 @@ augroup END
 " vim-easy-align
 "
 vmap <Enter> <Plug>(EasyAlign)
-
-" ----------------------------------------------------------------------------
-" neosnippet
-"
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
 
 " ----------------------------------------------------------------------------
 " vim-markdown
