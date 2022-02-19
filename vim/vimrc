@@ -1,73 +1,32 @@
 scriptencoding utf-8
 
-" automatically download vimproc.dll
-let g:vimproc#download_windows_dll = 1
+call plug#begin('~/.plugged')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'lambdalisue/gina.vim'
+Plug 'lambdalisue/fern.vim'
+Plug 'scrooloose/nerdcommenter'
+call plug#end()
 
-let s:is_windows = has('win16') || has('win32') || has('win64')
-let s:is_mac = !s:is_windows
-      \ && (has('mac') || has('macunix') || has('gui_macvim') ||
-      \   (!executable('xdg-open') &&
-      \     system('uname') =~? '^darwin'))
+colorscheme tokyonight
 
-" In Windows/Linux, take in a difference of '.vim' and '$VIM/vimfiles'.
-let $DOTVIM = expand('$HOME/.vim')
-set runtimepath+=$HOME/.vim,$HOME/.vim/after
+set fenc=utf-8
+set encoding=utf-8
+set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp,ucs-bom,cp932,default,latin1
+set fileformats=unix,dos,mac
 
-silent! if plug#begin('~/.plugged')
-  if !s:is_windows
-    Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-  endif
+filetype plugin on
+filetype indent on
+au FocusGained,BufEnter * checktime
 
-  Plug 'vim-airline/vim-airline'
-  Plug 'jmcantrell/vim-virtualenv'
+" Fast saving
+nmap <SPACE>w :w!<CR>
 
-  " Browsing
-  Plug 'haya14busa/is.vim'
-  Plug 'itchyny/vim-cursorword'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'lambdalisue/fern.vim'
-  Plug 'vim-scripts/gtags.vim'
-  Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'roxma/nvim-yarp'
+" :W sudo saves the file
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
-  " Git
-  Plug 'tpope/vim-fugitive'
-  Plug 'mhinz/vim-signify'
-  Plug 'lambdalisue/gina.vim'
-
-  " Colors
-  Plug 'junegunn/rainbow_parentheses.vim'
-  Plug 'ghifarit53/tokyonight-vim'
-
-  " Edit
-  Plug 'junegunn/vim-easy-align'
-  Plug 'scrooloose/nerdcommenter'
-  Plug 'tpope/vim-surround'
-  Plug 'osyo-manga/vim-over'
-  Plug 'jceb/vim-hier'
-  Plug 'KazuakiM/vim-qfstatusline'
-  Plug 'w0rp/ale'
-
-  " Lang
-  Plug 'fatih/vim-go'
-  Plug 'moorereason/vim-markdownfmt'
-  Plug 'rhysd/vim-gfm-syntax'
-  Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
-  Plug 'fisadev/vim-isort'
-  Plug 'rhysd/vim-clang-format'
-  Plug 'NLKNguyen/c-syntax.vim'
-  Plug 'octol/vim-cpp-enhanced-highlight'
-  Plug 'chiphogg/vim-prototxt'
-
-  call plug#end()
-endif
-
-" ============================================================================
-" BASIC SETTINGS
-"
-silent! colorscheme tokyonight
-set background=dark
 set autoindent
 set smartindent
 set breakindent
@@ -128,9 +87,6 @@ let &showbreak = '↳ '
 set breakindent
 set breakindentopt=sbr
 set grepformat=%f:%l:%c:%m,%f:%l:%m
-if executable('jvgrep')
-  set grepprg=jvgrep
-endif
 highlight CursorLine ctermfg=216
 
 " ----------------------------------------------------------------------------
@@ -161,7 +117,9 @@ cnoremap <C-k> <C-\>e getcmdpos() == 1 ?
 cnoremap <C-y> <C-r>*
 " show the jump list if more then one candidate
 nnoremap <C-]> g<C-]>
-
+" search for the current selection in visual mode
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " gtags
 map <C-g> :Gtags 
 map <C-h> :Gtags -f %<CR>
@@ -174,34 +132,7 @@ nnoremap <silent> <Space>ev  :<C-u>edit $HOME/.dotfiles/vim/vimrc<CR>
 nnoremap <silent> <Space>eg  :<C-u>edit $HOME/.dotfiles/vim/gvimrc<CR>
 
 " Change current directory.
-nnoremap <silent> <Space>cd :<C-u>CD<CR>
-command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>') 
-function! s:ChangeCurrentDir(directory, bang)
-  if a:directory == ''
-    lcd %:p:h
-  else
-    execute 'lcd' . a:directory
-  endif
-
-  if a:bang == ''
-    pwd
-  endif
-endfunction
-
-" ----------------------------------------------------------------------------
-" Encoding
-"
-set fenc=utf-8
-set encoding=utf-8
-set fileencodings=iso-2022-jp,ucs-bom,sjis,utf-8,euc-jp,cp932,default,latin1
-set fileformats=unix,dos,mac
-
-" ----------------------------------------------------------------------------
-" Language
-"
-" Python
-let g:autopep8_disable_show_diff=1
-let g:python_highlight_all = 1
+nnoremap <silent> <Space>cd :cd %:p:h<CR>:pwd<CR>
 
 " ----------------------------------------------------------------------------
 " Autocommands
@@ -230,47 +161,9 @@ augroup MyAutoCmd
 augroup END
 
 " ----------------------------------------------------------------------------
-" vim-airline
-"
-let g:airline#extensions#tabline#enabled = 1
-
-" ----------------------------------------------------------------------------
-" nerdcommenter
-"
-let g:NERDSpaceDelims = 1
-
-" ----------------------------------------------------------------------------
-" over.vim
-"
-cnoreabb <silent><expr>s getcmdtype()==':' && getcmdline()=~'^s' ? 'OverCommandLine<CR><C-u>%s/<C-r>=get([], getchar(0), '')<CR>': 's'
-
-" ----------------------------------------------------------------------------
-" vim-qfstatusline
-"
-let g:Qfstatusline#UpdateCmd = function('lightline#update')
-
-" ----------------------------------------------------------------------------
 " matchit.vim
 "
 packadd matchit
-
-" ----------------------------------------------------------------------------
-" rainbow_parentheses.vim
-"
-augroup rainbow
-  autocmd!
-  autocmd Syntax * RainbowParentheses
-augroup END
-
-" ----------------------------------------------------------------------------
-" vim-easy-align
-"
-vmap <Enter> <Plug>(EasyAlign)
-
-" ----------------------------------------------------------------------------
-" vim-markdown
-"
-let g:markdown_fenced_languages = ['c', 'cpp', 'html', 'python', 'bash=sh']
 
 " ----------------------------------------------------------------------------
 " fzf
@@ -278,9 +171,6 @@ let g:markdown_fenced_languages = ['c', 'cpp', 'html', 'python', 'bash=sh']
 nnoremap <silent> <Space>f :<C-u>ProjectFiles<CR>
 nnoremap <silent> <Space>b :<C-u>Buffers<CR>
 nnoremap <silent> <Space>m :<C-u>History<CR>
-function! s:find_git_root()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-endfunction
 
 command! ProjectFiles execute 'Files' s:find_git_root()
 command! -bang -nargs=? -complete=dir Files
@@ -288,6 +178,30 @@ command! -bang -nargs=? -complete=dir Files
 command! -bang -nargs=? -complete=dir Files
       \call fzf#vim#files(<q-args>, {'options': ['--layout=reverse',
       \ --info=inline', '--preview', 'head -20 {}']}, <bang>0)
+
+" ----------------------------------------------------------------------------
+" Helper functions
+"
+function! VisualSelection(direction, extra_filter) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", "\\/.*'$^~[]")
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'gv'
+        call CmdLine("Ack '" . l:pattern . "' " )
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
 
 " ----------------------------------------------------------------------------
 " Read local setting.
