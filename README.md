@@ -2,15 +2,13 @@
 
 ## Linux
 ```
-git clone git@github.com:mshr-h/dotfiles.git .dotfiles
-bash ~/.dotfiles/init.sh
+git clone https://github.com/mshr-h/dotfiles.git ~/.dotfiles
 bash ~/.dotfiles/deploy.sh
 ```
 
 ## Windows
 ```
-git clone git@github.com:mshr-h/dotfiles.git .dotfiles
+git clone https://github.com/mshr-h/dotfiles.git ~/.dotfiles
 cd .dotfiles
-init.bat
 deploy.bat
 ```
