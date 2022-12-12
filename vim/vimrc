@@ -142,8 +142,8 @@ augroup MyAutoCmd
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile *.s,*.S set filetype=arm
   autocmd FileType c,cpp,objc setl noexpandtab
-  autocmd FileType c,cpp,objc setl shiftwidth=4
-  autocmd FileType c,cpp,objc setl tabstop=4
+  autocmd FileType c,cpp,objc setl shiftwidth=2
+  autocmd FileType c,cpp,objc setl tabstop=2
   autocmd FileType c,cpp,objc setl listchars=tab:\|\ ,trail:-
   autocmd FileType go setl noexpandtab
   autocmd FileType go setl shiftwidth=4
@@ -153,8 +153,8 @@ augroup MyAutoCmd
   autocmd FileType python setl cin
   autocmd FileType python setl expandtab
   autocmd FileType python setl nofoldenable
-  autocmd FileType python setl shiftwidth=4
-  autocmd FileType python setl tabstop=4
+  autocmd FileType python setl shiftwidth=2
+  autocmd FileType python setl tabstop=2
   autocmd FileType verilog setl suffixesadd=.v
   autocmd FileType vim setl foldmethod=marker
 
