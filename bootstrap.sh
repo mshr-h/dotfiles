@@ -16,3 +16,6 @@ git config --global ghq.root ~/src
 
 # tmux
 [[ -f ~/.tmux.conf ]] || ln -sfnv $DOTFILES_HOME/tmux.conf ~/.tmux.conf
+
+# wezterm
+[[ -f ~/.wezterm.lua ]] || ln -sfnv $DOTFILES_HOME/wezterm.lua ~/.wezterm.lua
