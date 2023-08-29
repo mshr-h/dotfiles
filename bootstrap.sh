@@ -16,6 +16,7 @@ git config --global ghq.root ~/src
 
 # tmux
 [[ -f ~/.tmux.conf ]] || ln -sfnv $DOTFILES_HOME/tmux.conf ~/.tmux.conf
+[[ -d ~/.tmux/plugins/tpm ]] || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # wezterm
 [[ -f ~/.wezterm.lua ]] || ln -sfnv $DOTFILES_HOME/wezterm.lua ~/.wezterm.lua
