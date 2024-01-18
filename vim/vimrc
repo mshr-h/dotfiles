@@ -29,9 +29,6 @@ filetype plugin on
 filetype indent on
 au FocusGained,BufEnter * checktime
 
-" Fast saving
-nmap <SPACE>w :w!<CR>
-
 " :W sudo saves the file
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
@@ -135,10 +132,6 @@ map <C-j> :GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-" Easily edit .vimrc and .gvimrc
-nnoremap <silent> <Space>ev  :<C-u>edit $HOME/.dotfiles/vim/vimrc<CR>
-nnoremap <silent> <Space>eg  :<C-u>edit $HOME/.dotfiles/vim/gvimrc<CR>
-
 " Change current directory.
 nnoremap <silent> <Space>cd :cd %:p:h<CR>:pwd<CR>
 
@@ -210,10 +203,3 @@ endfunction
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction
-
-" ----------------------------------------------------------------------------
-" Read local setting.
-"
-if filereadable(expand('$HOME/.vimrc_local'))
-  source $HOME/.vimrc_local
-endif
