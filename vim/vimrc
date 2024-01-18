@@ -1,14 +1,22 @@
 scriptencoding utf-8
 
-call plug#begin('~/.plugged')
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'lambdalisue/gina.vim'
-Plug 'lambdalisue/fern.vim'
-Plug 'scrooloose/nerdcommenter'
-call plug#end()
+let s:jetpackfile = expand('<sfile>:p:h') .. '/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim'
+let s:jetpackurl = "https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim"
+if !filereadable(s:jetpackfile)
+  call system(printf('curl -fsSLo %s --create-dirs %s', s:jetpackfile, s:jetpackurl))
+endif
+
+packadd vim-jetpack
+call jetpack#begin("~/.plugged")
+Jetpack 'tani/vim-jetpack', {'opt': 1}
+Jetpack 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Jetpack 'junegunn/fzf.vim'
+Jetpack 'ghifarit53/tokyonight-vim'
+Jetpack 'vim-airline/vim-airline'
+Jetpack 'lambdalisue/gina.vim'
+Jetpack 'lambdalisue/fern.vim'
+Jetpack 'scrooloose/nerdcommenter'
+call jetpack#end()
 
 colorscheme tokyonight
 
