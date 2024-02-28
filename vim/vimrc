@@ -38,7 +38,7 @@ set breakindent
 set lazyredraw
 set laststatus=2
 set showcmd
-set visualbell
+set novisualbell
 set backup
 set backupdir=~/var/vim/backup//
 set writebackup
@@ -72,18 +72,13 @@ set virtualedit=block
 set nojoinspaces
 set autoread
 set wrap
-set t_vb=
-set novisualbell
 set history=500
-set cmdheight=2
 set title
-set titlelen=95
 set modeline
 set t_Co=256
 set nf="hex"
 set foldlevelstart=99
 set completeopt=menuone,preview,longest
-set nocursorline
 set nrformats=hex
 set formatoptions+=1
 set completeopt-=preview
@@ -125,13 +120,6 @@ nnoremap <C-]> g<C-]>
 " search for the current selection in visual mode
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-" gtags
-map <C-g> :Gtags 
-map <C-h> :Gtags -f %<CR>
-map <C-j> :GtagsCursor<CR>
-map <C-n> :cn<CR>
-map <C-p> :cp<CR>
-
 " Change current directory.
 nnoremap <silent> <Space>cd :cd %:p:h<CR>:pwd<CR>
 
