@@ -12,7 +12,6 @@ fi
 # git
 git config --global core.editor "vim"
 git config --global push.default "simple"
-git config --global ghq.root ~/src
 
 # tmux
 [[ -f ~/.tmux.conf ]] || ln -sfnv $DOTFILES_HOME/tmux.conf ~/.tmux.conf
