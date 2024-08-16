@@ -1,0 +1,9 @@
+[shell]
+program = "/bin/zsh"
+args = ["-l", "-c", "tmux a -t 0 || tmux"]
+
+[window]
+dimensions = { columns = 140, lines = 50 }  # Default: columns = 0, lines = 0
+
+[font]
+size = 14

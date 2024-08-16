@@ -20,3 +20,9 @@ git config --global ghq.root ~/src
 
 # wezterm
 [[ -f ~/.wezterm.lua ]] || ln -sfnv $DOTFILES_HOME/wezterm.lua ~/.wezterm.lua
+
+# ~/.config
+[[ -d ~/.config ]] || mkdir ~/.config
+
+# alacritty
+[[ -d ~/.config/alacritty ]] || ln -sfnv $DOTFILES_HOME/config/alacritty ~/.config/alacritty
