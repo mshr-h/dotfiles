@@ -11,14 +11,15 @@ call jetpack#begin("~/.plugged")
 Jetpack 'tani/vim-jetpack', {'opt': 1}
 Jetpack 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Jetpack 'junegunn/fzf.vim'
-Jetpack 'ghifarit53/tokyonight-vim'
+Jetpack 'NLKNguyen/papercolor-theme'
 Jetpack 'vim-airline/vim-airline'
 Jetpack 'lambdalisue/gina.vim'
 Jetpack 'lambdalisue/fern.vim'
 Jetpack 'scrooloose/nerdcommenter'
 call jetpack#end()
 
-colorscheme tokyonight
+set background=dark
+colorscheme PaperColor
 
 set fenc=utf-8
 set encoding=utf-8
