@@ -21,7 +21,6 @@ call jetpack#end()
 set background=dark
 colorscheme PaperColor
 
-set fenc=utf-8
 set encoding=utf-8
 set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp,ucs-bom,cp932,default,latin1
 set fileformats=unix,dos,mac
