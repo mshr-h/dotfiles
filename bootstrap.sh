@@ -16,3 +16,6 @@ git config --global push.default "simple"
 # tmux
 [[ -f ~/.tmux.conf ]] || ln -sfnv $DOTFILES_HOME/tmux.conf ~/.tmux.conf
 [[ -d ~/.tmux/plugins/tpm ]] || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# herdr desktop
+bash "$DOTFILES_HOME/herdr-app/bootstrap.sh"
